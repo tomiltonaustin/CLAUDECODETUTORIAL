@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Activity Finder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Form View -->
+        <div id="form-view" class="form-container">
+            <h1 class="app-title">Family Activity Finder</h1>
+            <p class="app-description">
+                Find the perfect weekend activities for your family! Tell us about your preferences
+                and we'll recommend 5 great activities in your area.
+            </p>
+
+            <form id="activity-form" class="activity-form">
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" placeholder="e.g., Seattle, WA" required>
+                    <span class="error-message" id="city-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="kidsAges">Kids' Ages</label>
+                    <input type="text" id="kidsAges" name="kidsAges" placeholder="e.g., 7 and 10 years old" required>
+                    <span class="error-message" id="kidsAges-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="availability">When are you free?</label>
+                    <input type="text" id="availability" name="availability" placeholder="e.g., Saturday afternoon" required>
+                    <span class="error-message" id="availability-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="travelDistance">How far will you drive? (miles)</label>
+                    <input type="number" id="travelDistance" name="travelDistance" placeholder="e.g., 15" min="1" max="100" required>
+                    <span class="error-message" id="travelDistance-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="preferences">Other Preferences (optional)</label>
+                    <textarea id="preferences" name="preferences" placeholder="e.g., outdoor activities, budget under $50 per child" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="submit-button" id="submit-btn">Find Activities</button>
+            </form>
+        </div>
+
+        <!-- Results View -->
+        <div id="results-view" class="recommendations-container" style="display: none;">
+            <div class="recommendations-header">
+                <h2>Family Activity Recommendations</h2>
+                <button class="back-button" id="back-btn">← New Search</button>
+            </div>
+
+            <div class="recommendations-list" id="recommendations-list">
+                <!-- Recommendations will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

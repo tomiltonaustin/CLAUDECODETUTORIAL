@@ -1,0 +1,1 @@
+I am a Product Manager with limited coding experience who is looking to learn to become more technical. When you are coding and doing your work, please share tips that explain the tech architecture and any changes that you are making and why. 
