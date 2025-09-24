@@ -123,7 +123,7 @@ function showResultsView() {
 }
 
 // Form submission handler
-activityForm.addEventListener('submit', function(e) {
+activityForm.addEventListener('submit', async function(e) {
   e.preventDefault();
 
   // Get form data
@@ -149,12 +149,47 @@ activityForm.addEventListener('submit', function(e) {
   // Show loading state
   showLoading();
 
-  // Simulate API call with setTimeout
-  setTimeout(() => {
+  try {
+    // Call backend API
+    console.log('🚀 Calling backend API with:', formData);
+
+    const response = await fetch('http://localhost:3001/api/activities', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('✅ API response received:', data);
+
+    if (data.success && data.activities) {
+      hideLoading();
+      displayRecommendations(data.activities);
+      showResultsView();
+    } else {
+      throw new Error('Invalid response format from API');
+    }
+
+  } catch (error) {
+    console.error('❌ Error calling API:', error);
     hideLoading();
+
+    // Show error message to user
+    displayErrors({
+      general: 'Unable to get recommendations. Please check your connection and try again.'
+    });
+
+    // Fallback to mock data for development
+    console.log('📝 Falling back to mock data');
     displayRecommendations(mockActivities);
     showResultsView();
-  }, 1500);
+  }
 });
 
 // Back button handler
